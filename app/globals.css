@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+ * ألوان الهوية — عدّل القيم هنا فقط وستنعكس في كل الموقع.
+ * (Tailwind 4 لا يستخدم tailwind.config؛ الإعدادات تكون داخل CSS.)
+ */
+:root {
+  --brand-purple: #4a1c5a; /* البنفسجي الأساسي */
+  --brand-purple-dark: #331040; /* بنفسجي غامق (الفوتر، التفاعل) */
+  --brand-pink: #e8b4d8; /* الوردي الفاتح (الثانوي) */
+  --brand-pink-soft: #f6e4f0; /* وردي باهت للبطاقات والحدود */
+  --brand-surface: #faf7fb; /* خلفية الموقع */
+  --brand-ink: #2b1a33; /* لون النص */
+}
+
+/* تحويل المتغيرات إلى أدوات Tailwind: bg-primary, text-secondary, bg-surface ... */
+@theme inline {
+  --color-background: var(--brand-surface);
+  --color-foreground: var(--brand-ink);
+  --color-primary: var(--brand-purple);
+  --color-primary-dark: var(--brand-purple-dark);
+  --color-secondary: var(--brand-pink);
+  --color-secondary-soft: var(--brand-pink-soft);
+
+  --font-sans: var(--font-tajawal);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* خلفية بنفسجية متدرجة مع زخرفة أزهار خفيفة وثابتة (بدون حركة) */
+.bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cg fill='none' stroke='%23e8b4d8' stroke-opacity='0.25' stroke-width='1'%3E%3Cg transform='translate(18 18)'%3E%3Ccircle cx='6' r='5'/%3E%3Ccircle cx='-6' r='5'/%3E%3Ccircle cy='6' r='5'/%3E%3Ccircle cy='-6' r='5'/%3E%3C/g%3E%3Cg transform='translate(54 54)'%3E%3Ccircle cx='6' r='5'/%3E%3Ccircle cx='-6' r='5'/%3E%3Ccircle cy='6' r='5'/%3E%3Ccircle cy='-6' r='5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark));
+  background-size: 72px 72px, auto;
+}
+
+/* ===== الحركات (Animations) ===== */
+
+/* ظهور العناصر عند التمرير — يُفعَّل عبر components/Reveal.tsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* دخول متتابع (يُضبط التأخير بـ style={{ animationDelay }}) */
+.animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+.animate-kenburns {
+  animation: kenburns 20s ease-in-out infinite alternate;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+.animate-menu-in {
+  animation: menu-in 0.3s ease-out both;
+}
+
+/* نص بتدرج لامع متحرك */
+.text-shimmer {
+  background: linear-gradient(90deg, #fff 0%, var(--brand-pink) 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* لمعة تمر فوق الأزرار عند التمرير بالماوس */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  transform: translateX(-120%);
+  z-index: -1;
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.8s ease;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-20px) rotate(calc(var(--r, 0deg) + 8deg));
+  }
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% center;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 180, 216, 0.7);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 20px rgba(232, 180, 216, 0);
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* احترام إعدادات "تقليل الحركة" في جهاز الزائر */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
