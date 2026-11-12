@@ -1,24 +1,32 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { InstagramIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/icons";
-import { navLinks, phones, siteConfig } from "@/lib/site";
+import {
+  ClockIcon,
+  InstagramIcon,
+  MapPinIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+} from "@/components/icons";
+import { instagramHandle, navLinks, phones, siteConfig } from "@/lib/site";
+
+const headingClass = "mb-3 font-display text-base font-bold text-secondary-light";
+const iconClass = "h-4 w-4 shrink-0 text-secondary-light";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto bg-primary-dark text-white/80">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
+    <footer className="mt-auto border-t-2 border-secondary bg-primary-dark text-white/75">
+      <div className="mx-auto grid max-w-6xl gap-5 px-6 py-6 text-sm md:grid-cols-[1.2fr_0.8fr_1.2fr] md:gap-10">
         <div>
           <Logo variant="light" />
-          <p className="mt-4 text-lg font-bold text-secondary">{siteConfig.slogan}</p>
-          <p className="mt-2 text-sm leading-7">صناعة وتجارة الحجابات والإشاربات.</p>
+          <p className="mt-3 font-display text-lg font-bold text-secondary-light">{siteConfig.slogan}</p>
         </div>
 
         <div>
-          <h3 className="mb-4 text-lg font-bold text-white">روابط سريعة</h3>
-          <ul className="space-y-2">
+          <h3 className={headingClass}>روابط سريعة</h3>
+          <ul className="space-y-1.5">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-secondary">
+                <Link href={link.href} className="transition-colors hover:text-secondary-light">
                   {link.label}
                 </Link>
               </li>
@@ -27,24 +35,28 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-4 text-lg font-bold text-white">اتصل بنا</h3>
-          <ul className="space-y-3">
-            <li className="flex items-center gap-3">
-              <MapPinIcon className="h-5 w-5 shrink-0 text-secondary" />
+          <h3 className={headingClass}>اتصل بنا</h3>
+          <ul className="space-y-2">
+            <li className="flex items-center gap-2.5">
+              <MapPinIcon className={iconClass} />
               {siteConfig.address}
             </li>
+            <li className="flex items-center gap-2.5">
+              <ClockIcon className={iconClass} />
+              {siteConfig.workingHours}
+            </li>
             {phones.map((phone) => (
-              <li key={phone.href} className="flex items-center gap-3">
+              <li key={phone.href} className="flex items-center gap-2.5">
                 {phone.whatsapp ? (
-                  <WhatsAppIcon className="h-5 w-5 shrink-0 text-secondary" />
+                  <WhatsAppIcon className={iconClass} />
                 ) : (
-                  <PhoneIcon className="h-5 w-5 shrink-0 text-secondary" />
+                  <PhoneIcon className={iconClass} />
                 )}
                 <span>{phone.label}:</span>
                 <a
                   href={phone.href}
                   dir="ltr"
-                  className="hover:text-secondary"
+                  className="transition-colors hover:text-secondary-light"
                   {...(phone.whatsapp && { target: "_blank", rel: "noopener noreferrer" })}
                 >
                   {phone.display}
@@ -52,22 +64,23 @@ export default function Footer() {
               </li>
             ))}
             {siteConfig.instagramUrl && (
-              <li className="flex items-center gap-3">
-                <InstagramIcon className="h-5 w-5 shrink-0 text-secondary" />
+              <li className="flex items-center gap-2.5">
+                <InstagramIcon className={iconClass} />
                 <a
                   href={siteConfig.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-secondary"
+                  dir="ltr"
+                  className="transition-colors hover:text-secondary-light"
                 >
-                  إنستغرام
+                  {instagramHandle}
                 </a>
               </li>
             )}
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-4 text-center text-sm text-white/60">
+      <div className="border-t border-white/10 py-3 text-center text-xs text-white/50">
         جميع الحقوق محفوظة © {siteConfig.name}
       </div>
     </footer>

@@ -1,58 +1,106 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import ButtonLink from "@/components/Button";
-import Paisley from "@/components/Paisley";
-import { heroImage, siteConfig } from "@/lib/site";
+import { CheckCircleIcon } from "@/components/icons";
+import Typewriter from "@/components/Typewriter";
+import { heroImages, siteConfig } from "@/lib/site";
 
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
+const trustPoints = ["صناعة سورية", "جميع الألوان", "شحن داخل سوريا وخارجها"];
+
 export default function Hero() {
   return (
-    <section className="bg-pattern relative flex min-h-[60vh] items-center overflow-hidden text-white">
-      <Image
-        src={heroImage}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="animate-kenburns object-cover opacity-25 mix-blend-luminosity"
-      />
+    <section className="bg-soft overflow-hidden border-b border-line">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-14 md:grid-cols-2 md:py-20">
+        {/* النص */}
+        <div className="text-center md:text-start">
+          <p
+            className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-white px-4 py-1.5 text-sm font-bold text-secondary-deep"
+            style={delay(50)}
+          >
+            <span className="h-1.5 w-1.5 rotate-45 bg-secondary" aria-hidden="true" />
+            صناعة وتجارة الحجابات والإشاربات · دمشق
+          </p>
 
-      <Paisley
-        className="animate-float absolute -start-10 top-10 h-32 w-32 text-secondary/20 sm:h-52 sm:w-52"
-        style={{ "--r": "-20deg" } as CSSProperties}
-      />
-      <Paisley
-        className="animate-float absolute -end-8 bottom-6 h-36 w-36 text-secondary/15 sm:h-60 sm:w-60"
-        style={{ "--r": "160deg", animationDelay: "-3s" } as CSSProperties}
-      />
+          <h1
+            className="animate-fade-up mt-6 font-display text-5xl font-bold leading-tight text-primary sm:text-6xl"
+            style={delay(180)}
+          >
+            {siteConfig.name}
+          </h1>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-14 text-center sm:py-20">
-        <h1
-          className="text-shimmer animate-fade-up text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl"
-          style={delay(100)}
-        >
-          {siteConfig.name}
-        </h1>
-        <p
-          className="animate-fade-up mt-4 text-2xl font-bold text-secondary sm:text-3xl"
-          style={delay(350)}
-        >
-          أناقة تليق بكِ
-        </p>
-        <p className="animate-fade-up mt-3 text-lg text-white/90 sm:text-xl" style={delay(550)}>
-          {siteConfig.slogan}
-        </p>
-        <p
-          className="animate-fade-up mx-auto mt-4 max-w-xl leading-8 text-white/80"
-          style={delay(750)}
-        >
-          حجابات وإشاربات بتصاميم مبتكرة وجودة عالية، صُنعت في دمشق بعناية وإتقان.
-        </p>
-        <div className="animate-fade-up mt-8" style={delay(950)}>
-          <ButtonLink href="/products" variant="secondary" className="animate-pulse-ring px-8 py-3 text-lg">
-            تسوقي الآن
-          </ButtonLink>
+          <p className="animate-fade-up mt-4 text-2xl font-bold text-foreground" style={delay(320)}>
+            أناقة تليق بكِ في
+            {/* سطر مستقل بارتفاع ثابت حتى لا تتحرك الصفحة مع تغيّر الكلمات */}
+            <Typewriter
+              words={["حجابات الليكرا", "حجابات القطن", "الراسيات الناعمة"]}
+              className="mt-1 block min-h-[1.5em] text-secondary-deep"
+            />
+          </p>
+
+          <p
+            className="animate-fade-up mx-auto mt-5 max-w-lg text-lg leading-9 text-foreground/70 md:mx-0"
+            style={delay(460)}
+          >
+            حين يجتمع الاحتشام مع الذوق الرفيع تزدادين ثقةً وإشراقاً. نصنع حجاباتنا في دمشق بعناية
+            وإتقان، وبكل الألوان التي تحبّينها.
+          </p>
+
+          <div
+            className="animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start"
+            style={delay(600)}
+          >
+            <ButtonLink href="/contact" className="animate-pulse-ring px-8 text-lg">
+              تواصلي معنا
+            </ButtonLink>
+            <ButtonLink href="/about" variant="outline" className="px-8 text-lg">
+              تعرّفي علينا
+            </ButtonLink>
+          </div>
+
+          <ul
+            className="animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-foreground/75 md:justify-start"
+            style={delay(740)}
+          >
+            {trustPoints.map((point) => (
+              <li key={point} className="flex items-center gap-1.5">
+                <CheckCircleIcon className="h-5 w-5 text-secondary" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* الصورتان داخل إطارين مقوّسين */}
+        <div className="animate-fade-up relative mx-auto w-full max-w-sm pb-8 md:max-w-md" style={delay(300)}>
+          {/* قوس ذهبي رفيع خلف الصورة الكبيرة */}
+          <span
+            className="absolute end-[-14px] top-[-14px] h-[88%] w-[78%] rounded-t-full border border-secondary"
+            aria-hidden="true"
+          />
+          <div className="relative ms-auto aspect-[4/5] w-[78%] overflow-hidden rounded-t-full rounded-b-3xl bg-secondary-soft shadow-2xl shadow-primary/15">
+            <Image
+              src={heroImages.main}
+              alt="فتاة ترتدي حجاباً من حجابات البشائر"
+              fill
+              priority
+              sizes="(min-width: 768px) 30vw, 70vw"
+              className="object-cover object-top"
+            />
+          </div>
+          <div className="absolute bottom-0 start-0 aspect-[4/5] w-[46%] overflow-hidden rounded-t-full rounded-b-2xl border-[6px] border-white bg-secondary-soft shadow-xl shadow-primary/15">
+            <Image
+              src={heroImages.side}
+              alt="فتاة ترتدي حجاباً بلون هادئ"
+              fill
+              sizes="(min-width: 768px) 18vw, 40vw"
+              className="object-cover object-top"
+            />
+          </div>
+          <p className="absolute end-0 bottom-10 rounded-2xl border border-line bg-white px-4 py-2.5 text-sm font-bold text-primary shadow-lg">
+            <span className="block text-xs font-medium text-secondary-deep">شعارنا</span>
+            {siteConfig.slogan}
+          </p>
         </div>
       </div>
     </section>

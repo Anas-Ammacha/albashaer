@@ -5,24 +5,33 @@
  * (Tailwind 4 لا يستخدم tailwind.config؛ الإعدادات تكون داخل CSS.)
  */
 :root {
-  --brand-purple: #4a1c5a; /* البنفسجي الأساسي */
-  --brand-purple-dark: #331040; /* بنفسجي غامق (الفوتر، التفاعل) */
-  --brand-pink: #e8b4d8; /* الوردي الفاتح (الثانوي) */
-  --brand-pink-soft: #f6e4f0; /* وردي باهت للبطاقات والحدود */
-  --brand-surface: #faf7fb; /* خلفية الموقع */
-  --brand-ink: #2b1a33; /* لون النص */
+  --brand-purple: #4a1a5c; /* البنفسجي الملكي (العناوين والأزرار) */
+  --brand-ink-dark: #1b1221; /* داكن شبه أسود (الشريط العلوي، الفوتر، قسم الدعوة) */
+  --brand-gold: #b08d3c; /* الذهبي العتيق (الزخارف واللمسات) */
+  --brand-gold-deep: #86681f; /* ذهبي غامق للنصوص الصغيرة على خلفية فاتحة */
+  --brand-gold-light: #dcc282; /* ذهبي فاتح للنصوص على خلفية داكنة */
+  --brand-gold-soft: #f5efe0; /* عاجي ذهبي باهت (خلفية الأيقونات والشارات) */
+  --brand-surface: #fcfaf6; /* خلفية الموقع */
+  --brand-sand: #f5f0e6; /* خلفية الأقسام المتناوبة */
+  --brand-line: #e7dfd0; /* الخطوط والحدود الرفيعة */
+  --brand-ink: #221a28; /* لون النص */
 }
 
-/* تحويل المتغيرات إلى أدوات Tailwind: bg-primary, text-secondary, bg-surface ... */
+/* تحويل المتغيرات إلى أدوات Tailwind: bg-primary, text-secondary, bg-sand, border-line ... */
 @theme inline {
   --color-background: var(--brand-surface);
   --color-foreground: var(--brand-ink);
   --color-primary: var(--brand-purple);
-  --color-primary-dark: var(--brand-purple-dark);
-  --color-secondary: var(--brand-pink);
-  --color-secondary-soft: var(--brand-pink-soft);
+  --color-primary-dark: var(--brand-ink-dark);
+  --color-secondary: var(--brand-gold);
+  --color-secondary-deep: var(--brand-gold-deep);
+  --color-secondary-light: var(--brand-gold-light);
+  --color-secondary-soft: var(--brand-gold-soft);
+  --color-sand: var(--brand-sand);
+  --color-line: var(--brand-line);
 
   --font-sans: var(--font-tajawal);
+  --font-display: var(--font-display-ar);
 }
 
 html {
@@ -35,11 +44,12 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* خلفية بنفسجية متدرجة مع زخرفة أزهار خفيفة وثابتة (بدون حركة) */
-.bg-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cg fill='none' stroke='%23e8b4d8' stroke-opacity='0.25' stroke-width='1'%3E%3Cg transform='translate(18 18)'%3E%3Ccircle cx='6' r='5'/%3E%3Ccircle cx='-6' r='5'/%3E%3Ccircle cy='6' r='5'/%3E%3Ccircle cy='-6' r='5'/%3E%3C/g%3E%3Cg transform='translate(54 54)'%3E%3Ccircle cx='6' r='5'/%3E%3Ccircle cx='-6' r='5'/%3E%3Ccircle cy='6' r='5'/%3E%3Ccircle cy='-6' r='5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark));
-  background-size: 72px 72px, auto;
+/* خلفية فاتحة هادئة للهيرو وبنرات الصفحات: تدرج عاجي مع هالة ذهبية خفيفة جداً */
+.bg-soft {
+  background-image:
+    radial-gradient(60% 70% at 15% 0%, rgba(176, 141, 60, 0.13) 0%, transparent 70%),
+    radial-gradient(50% 60% at 95% 100%, rgba(74, 26, 92, 0.07) 0%, transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, var(--brand-sand) 100%);
 }
 
 /* ===== الحركات (Animations) ===== */
@@ -61,27 +71,11 @@ body {
 .animate-fade-up {
   animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-.animate-float {
-  animation: float 8s ease-in-out infinite;
-}
-.animate-kenburns {
-  animation: kenburns 20s ease-in-out infinite alternate;
-}
 .animate-pulse-ring {
-  animation: pulse-ring 2.4s ease-out infinite;
+  animation: pulse-ring 2.6s ease-out infinite;
 }
 .animate-menu-in {
   animation: menu-in 0.3s ease-out both;
-}
-
-/* نص بتدرج لامع متحرك */
-.text-shimmer {
-  background: linear-gradient(90deg, #fff 0%, var(--brand-pink) 50%, #fff 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 6s linear infinite;
 }
 
 /* لمعة تمر فوق الأزرار عند التمرير بالماوس */
@@ -94,7 +88,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
   transform: translateX(-120%);
   z-index: -1;
 }
@@ -113,35 +107,13 @@ body {
     transform: none;
   }
 }
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(var(--r, 0deg));
-  }
-  50% {
-    transform: translateY(-20px) rotate(calc(var(--r, 0deg) + 8deg));
-  }
-}
-@keyframes kenburns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.12);
-  }
-}
-@keyframes shimmer {
-  to {
-    background-position: -200% center;
-  }
-}
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(232, 180, 216, 0.7);
+    box-shadow: 0 0 0 0 rgba(74, 26, 92, 0.35);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 20px rgba(232, 180, 216, 0);
+    box-shadow: 0 0 0 16px rgba(74, 26, 92, 0);
   }
 }
 @keyframes menu-in {
@@ -154,11 +126,73 @@ body {
     transform: none;
   }
 }
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ===== تأثيرات النصوص ===== */
+
+/* ظهور النص كلمة بكلمة (components/TextReveal.tsx) */
+.word-reveal > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.7em);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 70ms + var(--base, 0ms));
+}
+.word-reveal.is-visible > span {
+  opacity: 1;
+  transform: none;
+}
+
+/* مؤشر الكتابة الوامض (components/Typewriter.tsx) */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-inline-start: 4px;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: blink 1s steps(1) infinite;
+}
+
+/* خط تحت العنوان يمتد عند الظهور */
+.line-grow {
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+.reveal.is-visible .line-grow {
+  transform: scaleX(1);
+}
+
+/* شريط تقدم التمرير في أعلى الصفحة */
+.scroll-progress {
+  transform-origin: right center; /* RTL: يبدأ من اليمين */
+  transform: scaleX(var(--p, 0));
+}
+
+/* خط الربط بين خطوات "كيف تطلبين" */
+.step-line {
+  background-image: linear-gradient(90deg, var(--brand-gold) 50%, transparent 50%);
+  background-size: 14px 1px;
+  background-repeat: repeat-x;
+}
 
 /* احترام إعدادات "تقليل الحركة" في جهاز الزائر */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .word-reveal > span {
+    opacity: 1;
+    transform: none;
+  }
+  .line-grow {
+    transform: none;
   }
   *,
   *::before,

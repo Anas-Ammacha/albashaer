@@ -66,7 +66,67 @@ export const HomeHeartIcon = (p: IconProps) => (
   </Icon>
 );
 
-export const InstagramIcon = (p: IconProps) => (
+export const ShieldCheckIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z" />
+    <path d="M8.5 12l2.5 2.5 4.5-5" />
+  </Icon>
+);
+
+export const PaletteIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3a9 9 0 100 18c1.4 0 2-1 1.5-2.2-.5-1.2.2-2.300 1.500-2.300H17a4 4 0 004-4c0-5-4-9.500-9-9.500z" />
+    <circle cx="7.500" cy="11" r="1" fill="currentColor" />
+    <circle cx="10" cy="7" r="1" fill="currentColor" />
+    <circle cx="15" cy="7.500" r="1" fill="currentColor" />
+  </Icon>
+);
+
+export const BoxIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 7.500L12 3l9 4.500v9L12 21l-9-4.500z" />
+    <path d="M3 7.500L12 12l9-4.500M12 12v9" />
+  </Icon>
+);
+
+export const ChatIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 5h16v11H9l-5 4z" />
+    <path d="M8 9.500h8M8 12.500h5" />
+  </Icon>
+);
+
+export const GridIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="4" y="4" width="7" height="7" rx="1.500" />
+    <rect x="13" y="4" width="7" height="7" rx="1.500" />
+    <rect x="4" y="13" width="7" height="7" rx="1.500" />
+    <rect x="13" y="13" width="7" height="7" rx="1.500" />
+  </Icon>
+);
+
+export const CheckCircleIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 12.500l2.800 2.800L16 9.500" />
+  </Icon>
+);
+
+export const GlobeIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3c2.600 2.500 4 5.600 4 9s-1.400 6.500-4 9c-2.600-2.500-4-5.600-4-9s1.400-6.500 4-9z" />
+  </Icon>
+);
+
+export const ClockIcon =(p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </Icon>
+);
+
+export const InstagramIcon =(p: IconProps) => (
   <Icon {...p}>
     <rect x="3" y="3" width="18" height="18" rx="5" />
     <circle cx="12" cy="12" r="4" />

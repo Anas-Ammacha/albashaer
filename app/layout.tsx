@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
+import { El_Messiri, Tajawal } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import ScrollProgress from "@/components/ScrollProgress";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
+// خط النصوص
 const tajawal = Tajawal({
   variable: "--font-tajawal",
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "700", "800"],
+  display: "swap",
+});
+
+// خط العناوين (كلاسيكي أنيق) — يُستخدم عبر الصنف font-display
+const displayFont = El_Messiri({
+  variable: "--font-display-ar",
+  subsets: ["arabic", "latin"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -18,12 +28,24 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    locale: "ar_SY",
+    type: "website",
+    siteName: siteConfig.name,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ar" dir="rtl" className={`${tajawal.variable} h-full antialiased`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      className={`${tajawal.variable} ${displayFont.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
+        <ScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

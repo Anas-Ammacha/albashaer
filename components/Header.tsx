@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import ButtonLink from "@/components/Button";
 import Logo from "@/components/Logo";
 import { CloseIcon, MenuIcon } from "@/components/icons";
 import { navLinks } from "@/lib/site";
@@ -21,14 +22,14 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white/90 backdrop-blur transition-shadow duration-300 ${
-        scrolled ? "shadow-md" : "border-b border-secondary-soft"
+      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-shadow duration-300 ${
+        scrolled ? "border-transparent shadow-md" : "border-line"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <Logo />
 
-        <nav aria-label="التنقل الرئيسي" className="hidden md:block">
+        <nav aria-label="التنقل الرئيسي" className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => {
               const active = pathname === link.href;
@@ -47,6 +48,9 @@ export default function Header() {
               );
             })}
           </ul>
+          <ButtonLink href="/contact" className="px-5 py-2 text-sm">
+            تواصلي معنا
+          </ButtonLink>
         </nav>
 
         <button
@@ -65,7 +69,7 @@ export default function Header() {
         <nav
           id="mobile-menu"
           aria-label="قائمة الجوال"
-          className="animate-menu-in border-t border-secondary-soft md:hidden"
+          className="animate-menu-in border-t border-line md:hidden"
         >
           <ul className="mx-auto flex max-w-6xl flex-col px-6 py-2">
             {navLinks.map((link) => (

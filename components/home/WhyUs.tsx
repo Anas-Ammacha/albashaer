@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { HomeHeartIcon, MedalIcon, SparkleIcon } from "@/components/icons";
+import { GlobeIcon, MedalIcon, PaletteIcon } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -11,36 +11,44 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    title: "جودة عالية",
-    text: "نختار أجود الأقمشة ونراقب كل مرحلة من مراحل التصنيع لنضمن لكِ منتجاً يدوم.",
+    title: "من المصنع مباشرةً",
+    text: "نصنّع حجاباتنا بأنفسنا في دمشق، فتتعاملين مع المصدر مباشرةً ونتابع الجودة في كل مرحلة.",
     Icon: MedalIcon,
   },
   {
-    title: "تصاميم مبتكرة",
-    text: "ألوان وتفاصيل عصرية تواكب الموضة وتحافظ على الاحتشام والأناقة.",
-    Icon: SparkleIcon,
+    title: "ألوان لكل ذوق",
+    text: "جميع منتجاتنا متوفرة بتشكيلة ألوان واسعة، لتختاري ما يناسب ذوقكِ ومناسبتكِ.",
+    Icon: PaletteIcon,
   },
   {
-    title: "صناعة سورية",
-    text: "نفخر بصناعة منتجاتنا في دمشق ودعم الصناعة المحلية وأيدي أبناء بلدنا.",
-    Icon: HomeHeartIcon,
+    title: "جملة وشحن",
+    text: "نوفّر البيع بالجملة لأصحاب المحلات والتجّار، ونشحن طلباتنا داخل سوريا وخارجها.",
+    Icon: GlobeIcon,
   },
 ];
 
 export default function WhyUs() {
   return (
-    <section className="bg-secondary-soft/60 py-20">
+    <section className="border-y border-line bg-sand py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading title="لماذا نحن؟" subtitle="ثلاثة أسباب تجعلنا خياركِ الأول." />
+        <SectionHeading
+          eyebrow="لماذا نحن؟"
+          title="ما يميّز حجابات البشائر"
+          subtitle="ثلاثة أسباب تجعلنا خياركِ الأول."
+        />
         <div className="grid gap-6 md:grid-cols-3">
           {features.map(({ title, text, Icon }, i) => (
             <Reveal key={title} delay={i * 150} className="h-full">
-              <article className="group h-full rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-secondary/40 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-                <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary text-secondary transition duration-500 group-hover:rotate-[360deg] group-hover:scale-110">
-                  <Icon className="h-8 w-8" />
+              <article className="group relative h-full overflow-hidden rounded-2xl border border-line bg-white p-8 transition duration-300 hover:-translate-y-1.5 hover:border-secondary/50 hover:shadow-xl hover:shadow-primary/10">
+                <span
+                  className="absolute inset-x-0 top-0 h-1 origin-right scale-x-0 bg-secondary transition-transform duration-500 group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-secondary-soft text-primary ring-1 ring-secondary/30 transition duration-300 group-hover:bg-primary group-hover:text-secondary-light">
+                  <Icon className="h-7 w-7" />
                 </span>
-                <h3 className="mt-5 text-xl font-bold text-primary">{title}</h3>
-                <p className="mt-3 leading-8 text-foreground/75">{text}</p>
+                <h3 className="mt-5 font-display text-xl font-bold text-primary">{title}</h3>
+                <p className="mt-3 leading-8 text-foreground/70">{text}</p>
               </article>
             </Reveal>
           ))}

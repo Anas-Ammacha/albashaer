@@ -3,18 +3,27 @@ import type { NavLink, PhoneNumber } from "@/types";
 export const siteConfig = {
   name: "حجابات البشائر",
   nameEn: "Al-Basha'er",
-  slogan: "إبتكار.. عودة.. تميّز",
+  slogan: "إبتكار.. جودة.. تميّز",
   description:
     "حجابات البشائر: صناعة وتجارة الحجابات والإشاربات في دمشق - الحريقة، سوريا. تصاميم مبتكرة وجودة عالية.",
   address: "دمشق - الحريقة",
+  // ساعات العمل: تظهر في الفوتر وصفحة اتصل بنا.
+  workingHours: "10 صباحاً - 8 مساءً",
   whatsappUrl: "https://wa.me/963944481500",
   // ضع رابط حساب إنستغرام هنا (مثل "https://instagram.com/xxxx") ليظهر في صفحة اتصل بنا والفوتر.
-  instagramUrl: "",
+  instagramUrl: "https://www.instagram.com/albashaer.hijab/",
 };
 
-// صورة خلفية الهيرو (مؤقتة من Unsplash).
-export const heroImage =
-  "https://images.unsplash.com/photo-1522219406764-db207f1f7640?auto=format&fit=crop&w=1600&q=75";
+// اسم الحساب (مثل @albashaer.hijab) يُستخرج تلقائياً من الرابط أعلاه.
+export const instagramHandle = siteConfig.instagramUrl
+  .replace(/^https?:\/\/(www\.)?instagram\.com\//, "@")
+  .replace(/\/$/, "");
+
+// صورتا الهيرو في الصفحة الرئيسية (استبدليهما بنفس الاسم في public/images/lifestyle/).
+export const heroImages = {
+  main: "/images/lifestyle/hijab-gold.jpg",
+  side: "/images/lifestyle/hijab-calm.jpg",
+};
 
 export const phones: PhoneNumber[] = [
   { label: "هاتف", display: "00963112210084", href: "tel:+963112210084" },
@@ -29,7 +38,6 @@ export const phones: PhoneNumber[] = [
 
 export const navLinks: NavLink[] = [
   { label: "الرئيسية", href: "/" },
-  { label: "المنتجات", href: "/products" },
   { label: "من نحن", href: "/about" },
   { label: "اتصل بنا", href: "/contact" },
 ];

@@ -4,9 +4,12 @@ import type { ComponentProps } from "react";
 type Variant = "primary" | "secondary" | "outline";
 
 const variants: Record<Variant, string> = {
+  // بنفسجي: الزر الأساسي على الخلفيات الفاتحة
   primary: "bg-primary text-white hover:bg-primary-dark",
-  secondary: "bg-secondary text-primary-dark hover:bg-white",
-  outline: "border border-white/60 text-white hover:bg-white/10",
+  // ذهبي: للخلفيات الداكنة
+  secondary: "bg-secondary text-primary-dark hover:bg-secondary-light",
+  // إطار فقط: زر ثانوي على الخلفيات الفاتحة
+  outline: "border border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white",
 };
 
 interface ButtonLinkProps extends ComponentProps<typeof Link> {

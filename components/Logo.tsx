@@ -22,7 +22,7 @@ export default function Logo({ variant = "dark" }: LogoProps) {
         height={160}
         unoptimized
         priority={variant === "dark"}
-        className="h-12 w-auto"
+        className={variant === "light" ? "h-9 w-auto" : "h-12 w-auto"}
       />
     </Link>
   );
