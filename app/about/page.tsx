@@ -13,7 +13,7 @@ import {
   MedalIcon,
   SparkleIcon,
 } from "@/components/icons";
-import { siteConfig } from "@/lib/site";
+import { asset, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "من نحن",
@@ -91,7 +91,7 @@ export default function AboutPage() {
             aria-hidden="true"
           />
           <Image
-            src="/images/about.jpg"
+            src={asset("/images/about.jpg")}
             alt="بروشور حجابات البشائر - صناعة وتجارة الحجابات والإشاربات"
             width={754}
             height={1080}

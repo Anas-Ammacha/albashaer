@@ -19,10 +19,14 @@ export const instagramHandle = siteConfig.instagramUrl
   .replace(/^https?:\/\/(www\.)?instagram\.com\//, "@")
   .replace(/\/$/, "");
 
+// يضيف المسار الأساسي للموقع أمام مسارات الصور (مطلوب عند النشر على GitHub Pages
+// تحت مسار فرعي مثل /albashaer). في التطوير المحلي لا يغيّر شيئاً.
+export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 // صورتا الهيرو في الصفحة الرئيسية (استبدليهما بنفس الاسم في public/images/lifestyle/).
 export const heroImages = {
-  main: "/images/lifestyle/hijab-gold.jpg",
-  side: "/images/lifestyle/hijab-calm.jpg",
+  main: asset("/images/lifestyle/hijab-gold.jpg"),
+  side: asset("/images/lifestyle/hijab-calm.jpg"),
 };
 
 export const phones: PhoneNumber[] = [

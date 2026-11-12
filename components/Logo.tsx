@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import { asset, siteConfig } from "@/lib/site";
 
 interface LogoProps {
   variant?: "dark" | "light";
@@ -16,7 +16,7 @@ export default function Logo({ variant = "dark" }: LogoProps) {
       className={variant === "light" ? "inline-block rounded-xl bg-white px-3 py-2" : "inline-block"}
     >
       <Image
-        src="/images/logo.png"
+        src={asset("/images/logo.png")}
         alt={siteConfig.name}
         width={520}
         height={160}

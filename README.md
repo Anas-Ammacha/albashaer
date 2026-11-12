@@ -20,6 +20,10 @@ npm run build
 
 > لا تشغّل `npm run build` أثناء تشغيل `npm run dev` (يتشاركان مجلد `.next`).
 
+## نشر الموقع
+
+الموقع منشور على GitHub Pages، ويُنشر **تلقائياً** عند كل رفع إلى الفرع `main` (الملف `.github/workflows/deploy.yml`). لمتابعة النشر افتحي تبويب **Actions** في المستودع على GitHub.
+
 ---
 
 ## 1. استبدال الشعار
